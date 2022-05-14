@@ -1,0 +1,52 @@
+package at.compus02.swd.ss2022.game.gameobjects.Objects;
+
+import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.GameObjectFactory;
+import at.compus02.swd.ss2022.game.gameobjects.Player.Player;
+import com.badlogic.gdx.utils.Array;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Random;
+
+public class NormalGameObjectFactory implements GameObjectFactory {
+    @Override
+    public Array<GameObject> createStartObjects(GameObject gameObject, int height, int width) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Random rand = new Random();
+        Array<GameObject> gameObjects = new Array<>();
+        int minWidth = -width/2;
+        int maxWidth = width/2;
+        int minHeight = -height/2;
+        int maxHeight = height/2;
+
+        for(int i = 0; i < amountStones; i++) {
+            int posX = rand.nextInt(maxWidth-minWidth) + minWidth;
+            int posY = rand.nextInt(maxHeight-minHeight) + minHeight;
+            if(!IsInPlayerRadius(posX, posY)) {
+                GameObject go = gameObject.getClass().getDeclaredConstructor().newInstance();
+                go.setPosition(posX, posY);
+                gameObjects.add(go);
+            } else {
+                i--;
+            }
+        }
+
+        Player player = new Player();
+        player.setPosition(playerX, playerY);
+        gameObjects.add(player);
+
+        return gameObjects;
+    }
+
+    public boolean IsInPlayerRadius(int x, int y) {
+        int tolerance = tilePixels*2;
+        int xLeft = playerX - tolerance;
+        int xRight = playerX + tolerance;
+        int yUp = playerY + tolerance;
+        int yDown = playerY - tolerance;
+
+        if(x > xLeft && x < xRight && y < yUp && y > yDown) {
+            return true;
+        }
+        return false;
+    }
+}
