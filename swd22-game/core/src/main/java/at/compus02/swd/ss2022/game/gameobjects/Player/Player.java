@@ -13,6 +13,7 @@ public class Player implements GameObject {
         image = new Texture("player.png");
         sprite = new Sprite(image);
     }
+
     @Override
     public void act(float delta) {
 
@@ -26,5 +27,13 @@ public class Player implements GameObject {
     @Override
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
+    }
+
+    public float getX() {
+        return sprite.getX();
+    }
+
+    public float getY() {
+        return sprite.getY();
     }
 }

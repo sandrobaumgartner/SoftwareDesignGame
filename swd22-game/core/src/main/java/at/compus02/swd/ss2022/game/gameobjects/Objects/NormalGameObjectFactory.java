@@ -21,7 +21,7 @@ public class NormalGameObjectFactory implements GameObjectFactory {
         for(int i = 0; i < amountStones; i++) {
             int posX = rand.nextInt(maxWidth-minWidth) + minWidth;
             int posY = rand.nextInt(maxHeight-minHeight) + minHeight;
-            if(!IsInPlayerRadius(posX, posY)) {
+            if(!isInPlayerRadius(posX, posY)) {
                 GameObject go = gameObject.getClass().getDeclaredConstructor().newInstance();
                 go.setPosition(posX, posY);
                 gameObjects.add(go);
@@ -30,14 +30,13 @@ public class NormalGameObjectFactory implements GameObjectFactory {
             }
         }
 
-        Player player = new Player();
         player.setPosition(playerX, playerY);
         gameObjects.add(player);
 
         return gameObjects;
     }
 
-    public boolean IsInPlayerRadius(int x, int y) {
+    private boolean isInPlayerRadius(int x, int y) {
         int tolerance = tilePixels*2;
         int xLeft = playerX - tolerance;
         int xRight = playerX + tolerance;
@@ -48,5 +47,9 @@ public class NormalGameObjectFactory implements GameObjectFactory {
             return true;
         }
         return false;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
