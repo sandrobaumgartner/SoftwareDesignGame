@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.Observer.PlayerMoveObserver;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Objects.NormalGameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.Objects.Stone;
@@ -45,7 +46,9 @@ public class Main extends ApplicationAdapter {
 		}
 		try {
 			gameObjects.addAll(normalGameObjectFactory.createStartObjects(new Stone(), windowHeight, windowWidth));
-			gameInput.setPlayer(normalGameObjectFactory.getPlayer());
+			Player player = normalGameObjectFactory.getPlayer();
+			player.addObserver(new PlayerMoveObserver());
+			gameInput.setPlayer(player);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

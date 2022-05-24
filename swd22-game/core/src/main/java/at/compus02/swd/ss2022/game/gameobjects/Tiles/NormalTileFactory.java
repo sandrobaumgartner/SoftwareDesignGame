@@ -1,7 +1,7 @@
 package at.compus02.swd.ss2022.game.gameobjects.Tiles;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.gameobjects.GameObjectFactory;
+import at.compus02.swd.ss2022.game.gameobjects.Objects.GameObjectFactory;
 import com.badlogic.gdx.utils.Array;
 
 import java.lang.reflect.InvocationTargetException;

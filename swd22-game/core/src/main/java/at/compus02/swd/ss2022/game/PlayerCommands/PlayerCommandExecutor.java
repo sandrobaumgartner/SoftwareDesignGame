@@ -4,7 +4,7 @@ import at.compus02.swd.ss2022.game.gameobjects.Player.Player;
 
 public class PlayerCommandExecutor {
 
-    private Player player;
+    private final Player player;
 
     public PlayerCommandExecutor(Player player) {
         this.player = player;
