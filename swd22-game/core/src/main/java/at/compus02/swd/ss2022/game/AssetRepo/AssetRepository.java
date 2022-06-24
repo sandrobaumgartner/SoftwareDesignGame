@@ -21,6 +21,11 @@ public final class AssetRepository {
     }
 
     public Texture getTexture(String textureName){
+        for (Texture texture : textures) {
+            if(texture.toString().equals(textureName)) {
+                return texture;
+            }
+        }
         Texture texture = new Texture(textureName);
         textures.add(texture);
         return texture;
