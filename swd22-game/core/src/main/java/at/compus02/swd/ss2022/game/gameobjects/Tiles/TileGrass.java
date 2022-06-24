@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.gameobjects.Tiles;
 
+import at.compus02.swd.ss2022.game.AssetRepo.AssetRepository;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -10,7 +11,7 @@ public class TileGrass implements GameObject {
     private Sprite sprite;
 
     public TileGrass() {
-        image = new Texture("tile_gras.png");
+        image = AssetRepository.getInstance().getTexture("tile_gras.png");
         sprite = new Sprite(image);
     }
 

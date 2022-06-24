@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.gameobjects.Player;
 
+import at.compus02.swd.ss2022.game.AssetRepo.AssetRepository;
 import at.compus02.swd.ss2022.game.Observer.PlayerObserver;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +16,7 @@ public class Player implements GameObject {
     private List<PlayerObserver> observerList = new ArrayList<>();
 
     public Player() {
-        image = new Texture("player.png");
+        image = AssetRepository.getInstance().getTexture("player.png");
         sprite = new Sprite(image);
     }
 

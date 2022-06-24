@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.AssetRepo.AssetRepository;
 import at.compus02.swd.ss2022.game.Observer.PlayerMoveObserver;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Objects.NormalGameObjectFactory;
@@ -90,6 +91,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		batch.dispose();
+		AssetRepository.getInstance().dispose();
 	}
 
 	@Override
