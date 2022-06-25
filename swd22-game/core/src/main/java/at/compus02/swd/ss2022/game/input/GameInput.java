@@ -19,10 +19,12 @@ public class GameInput extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         switch (keycode) {
+            // Arrow keys
             case 19: playerCommandExecutor.executePlayerCommand(up); break;
             case 20: playerCommandExecutor.executePlayerCommand(down); break;
             case 21: playerCommandExecutor.executePlayerCommand(left); break;
             case 22: playerCommandExecutor.executePlayerCommand(right); break;
+            // Space key
             case 62: playerCommandExecutor.executePlayerCommand(kill); break;
         }
         return true;
