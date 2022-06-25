@@ -29,7 +29,7 @@ public class Main extends ApplicationAdapter {
 	private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
 	private GameInput gameInput = new GameInput();
 
-	private Array<GameObject> gameObjects = new Array<>();
+	private static Array<GameObject> gameObjects = new Array<>();
 
 	private final float updatesPerSecond = 60;
 	private final float logicFrameTime = 1 / updatesPerSecond;
@@ -58,6 +58,7 @@ public class Main extends ApplicationAdapter {
 				player.addObserver(enemy);
 			}
 			gameInput.setPlayer(player);
+			gameInput.setEnemies(enemies);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,5 +116,13 @@ public class Main extends ApplicationAdapter {
 			}
 		}
 		return enemies;
+	}
+
+	public static Array<GameObject> getGameObjects() {
+		return gameObjects;
+	}
+
+	public static void setGameObjects(Array<GameObject> gameObjectList) {
+		gameObjects = gameObjectList;
 	}
 }

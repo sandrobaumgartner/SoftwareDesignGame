@@ -18,6 +18,30 @@ public class Enemy implements GameObject, PlayerObserver {
         this.following = following;
     }
 
+    @Override
+    public void act(float delta) {
+
+    }
+
+    @Override
+    public void setPosition(float x, float y) {
+        sprite.setPosition(x, y);
+    }
+
+    @Override
+    public void draw(SpriteBatch batch) {
+        sprite.draw(batch);
+    }
+
+    @Override
+    public void update(String text, float posX, float posY) {
+        if(this.following) {
+            this.follow(posX, posY);
+        } else {
+            this.runAway(posX, posY);
+        }
+    }
+
     public void follow(float playerX, float playerY) {
         float right = this.sprite.getX() + 32;
         float left = this.sprite.getX() - 32;
@@ -56,27 +80,11 @@ public class Enemy implements GameObject, PlayerObserver {
         }
     }
 
-    @Override
-    public void act(float delta) {
-
+    public float getX() {
+        return sprite.getX();
     }
 
-    @Override
-    public void setPosition(float x, float y) {
-        sprite.setPosition(x, y);
-    }
-
-    @Override
-    public void draw(SpriteBatch batch) {
-        sprite.draw(batch);
-    }
-
-    @Override
-    public void update(String text, float posX, float posY) {
-        if(this.following) {
-            this.follow(posX, posY);
-        } else {
-            this.runAway(posX, posY);
-        }
+    public float getY() {
+        return sprite.getY();
     }
 }
