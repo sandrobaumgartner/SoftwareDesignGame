@@ -29,6 +29,18 @@ public class NormalGameObjectFactory implements GameObjectFactory {
             }
         }
 
+        for(int i = 0; i < amountEnemies; i++) {
+            int posX = rand.nextInt(maxWidth-minWidth) + minWidth;
+            int posY = rand.nextInt(maxHeight-minHeight) + minHeight;
+            if(!isInPlayerRadius(posX, posY)) {
+                GameObject go = new Enemy();
+                go.setPosition(posX, posY);
+                gameObjects.add(go);
+            } else {
+                i--;
+            }
+        }
+
         player.setPosition(playerX, playerY);
         gameObjects.add(player);
 
