@@ -3,6 +3,7 @@ package at.compus02.swd.ss2022.game;
 import at.compus02.swd.ss2022.game.AssetRepo.AssetRepository;
 import at.compus02.swd.ss2022.game.Observer.PlayerMoveObserver;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Objects.Enemy;
 import at.compus02.swd.ss2022.game.gameobjects.Objects.NormalGameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.Objects.Stone;
 import at.compus02.swd.ss2022.game.gameobjects.Player.Player;
@@ -17,6 +18,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
@@ -49,6 +53,10 @@ public class Main extends ApplicationAdapter {
 			gameObjects.addAll(normalGameObjectFactory.createStartObjects(new Stone(), windowHeight, windowWidth));
 			Player player = normalGameObjectFactory.getPlayer();
 			player.addObserver(new PlayerMoveObserver());
+			ArrayList<Enemy> enemies = getEnemiesOfList(gameObjects);
+			for (Enemy enemy : enemies) {
+				player.addObserver(enemy);
+			}
 			gameInput.setPlayer(player);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,5 +105,15 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void resize(int width, int height){
 		viewport.update(width,height);
+	}
+
+	public ArrayList<Enemy> getEnemiesOfList(Array<GameObject> gameObjectList) {
+		ArrayList<Enemy> enemies = new ArrayList<>();
+		for (GameObject go : gameObjectList) {
+		    if(go instanceof Enemy) {
+				enemies.add((Enemy) go);
+			}
+		}
+		return enemies;
 	}
 }

@@ -6,14 +6,18 @@ import com.badlogic.gdx.InputAdapter;
 
 public class GameInput extends InputAdapter {
     private PlayerCommandExecutor playerCommandExecutor;
+    private MoveUp up = new MoveUp();
+    private MoveDown down = new MoveDown();
+    private MoveLeft left = new MoveLeft();
+    private MoveRight right = new MoveRight();
 
     @Override
     public boolean keyDown(int keycode) {
         switch (keycode) {
-            case 19: playerCommandExecutor.executePlayerCommand(new MoveUp()); break;
-            case 20: playerCommandExecutor.executePlayerCommand(new MoveDown()); break;
-            case 21: playerCommandExecutor.executePlayerCommand(new MoveLeft()); break;
-            case 22: playerCommandExecutor.executePlayerCommand(new MoveRight()); break;
+            case 19: playerCommandExecutor.executePlayerCommand(up); break;
+            case 20: playerCommandExecutor.executePlayerCommand(down); break;
+            case 21: playerCommandExecutor.executePlayerCommand(left); break;
+            case 22: playerCommandExecutor.executePlayerCommand(right); break;
         }
         return true;
     }

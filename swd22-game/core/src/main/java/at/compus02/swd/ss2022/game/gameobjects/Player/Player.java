@@ -31,7 +31,7 @@ public class Player implements GameObject {
     public void setPosition(float x, float y, String text) {
         this.setPosition(x, y);
         for (PlayerObserver observer : observerList) {
-            observer.update(text);
+            observer.update(text, x, y);
         }
     }
 
